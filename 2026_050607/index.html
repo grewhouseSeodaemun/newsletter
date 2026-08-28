@@ -184,6 +184,17 @@ img { display: block; width: 100%; height: auto; }
 .note .hl     { background: linear-gradient(transparent 60%, #FFF0A8 60%); font-weight: 700; }
 .note .small  { font-size: .88em; color: var(--회); }
 .note .blue   { color: #2F6EA0; font-weight: 700; }
+
+/* 댓글 영역 */
+.comments { background: #fff; padding: 48px 0; }
+.comments h2 { font-size: 20px; font-weight: 900; letter-spacing: -.035em; margin: 0 0 8px; }
+.comments .guide { font-size: 14px; color: var(--회); margin: 0 0 24px; font-weight: 500; line-height: 1.7; }
+#waline .wl-user { display: none; }
+#waline .wl-card { margin-left: 0; padding-left: 0; }
+#waline .wl-meta { display: none; }
+#waline .wl-power { display: none; }
+#waline { --waline-theme-color: #6FA8D6; --waline-active-color: #4E90C6; }
+#waline .wl-rss { display: none; }
 </style>
 </head>
 
@@ -380,7 +391,7 @@ img { display: block; width: 100%; height: auto; }
     <p>여기까지 읽어주신 분..! 이시군요! 정말 정말 감사합니다.
 그루하우스에서 4개월을 보내며 저는 '집'의 의미를 다시 생각하게 되었습니다.
 저도 이 직장을 가지며 처음으로 독립해 서울에서 작은 방을 얻게 되었거든요. 한정적인 예산 안에서 이리저리 다니고 부동산을 알아보고 발을 동동 구르며 힘들었던 순간도 많이 있었는데요. 
-그러면서 더 '멀쩡하고 안전한' 집의 소중함을 알게 되었고... 이 그루하우스 서대문에 96명의 입주민분들이 여기에 기대하는 '집'의 모습은 어떤 것일까, 많이 생각하게 되었어요. 
+그러면서 더 '멀쩡하고 안전한' 집의 소중함을 알게 되었고... 이 그루하우스 서대문에 96명의 입주민분들이 기대하는 '집'의 모습은 어떤 것일까, 많이 생각하게 되었어요. 
 <br>시설 정비로 튼튼하고 지내는데 불편함이 없는 집을 물리적으로 만들어가는 일.
 동시에 이 집에서 커리어적으로 또 다른 새로운 기회를 만나시도록 열심히 문화예술 프로그램을 서포트 하는 일.
 이 안에서 좋은 이웃들을 만나고 서로를 지지할 수 있는 인연들을 만날 수 있도록 커뮤니티 프로그램에 열심을 다하는 일. 
@@ -390,6 +401,43 @@ img { display: block; width: 100%; height: auto; }
 </p>
   </div>
 </section>
+
+<!-- ═══ 댓글 ═══ -->
+<section class="comments">
+  <div class="wrap">
+    <h2>댓글창</h2>
+    <p class="guide">닉네임만 입력하면 바로 댓글 작성 가능합니다 :)</p>
+    <div id="waline"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+  init({
+    el: '#waline',
+    serverURL: 'https://grew-comments.vercel.app',
+    lang: 'ko',
+    login: 'disable',
+    meta: ['nick'],
+    requiredMeta: ['nick'],
+    imageUploader: false,
+    search: false,
+    pageview: false,
+    copyright: false,    
+    emoji: false,
+    locale: {
+      placeholder: '하고 싶은 말을 남겨주세요.(시설 관련 문의는 AI룸메로 부탁드립니다 :) )',
+      nick: '닉네임',
+      sofa: '첫 댓글을 남겨보세요!',
+      submit: '댓글 남기기',
+      comment: '댓글',
+      reply: '답글',
+      cancelReply: '취소',
+      more: '더 보기',
+    },
+  });
+</script>
 
 <footer class="footer">
   <div class="wrap">
